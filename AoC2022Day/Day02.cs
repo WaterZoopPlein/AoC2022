@@ -22,7 +22,7 @@ namespace AoC2022Day
 
         public void SolvePartTwo()
         {
-            List<RpsRound> convertedInputList = InputList.ConvertAll(x => new RpsRound(x, mode:2));
+            List<RpsRound> convertedInputList = InputList.ConvertAll(x => new RpsRound(x, mode: 2));
             var totalScore = 0;
             for (int i = 0; i < convertedInputList.Count; i++)
             {
