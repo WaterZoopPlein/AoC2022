@@ -14,13 +14,13 @@ namespace AoC2022Day
         {
             int currentMaxIndex = 0;
             int currentMax = 0;
-            for (int currentELfIndex = 0; currentELfIndex < ConvertedInputList.Count; currentELfIndex++)
+            for (int currentElfIndex = 0; currentElfIndex < ConvertedInputList.Count; currentElfIndex++)
             {
-                var currentElfTotal = ConvertedInputList[currentELfIndex].Sum();
+                var currentElfTotal = ConvertedInputList[currentElfIndex].Sum();
                 if (currentElfTotal > currentMax)
                 {
                     currentMax = currentElfTotal;
-                    currentMaxIndex = currentELfIndex;
+                    currentMaxIndex = currentElfIndex;
                 }
             }
             Console.WriteLine($"Elf {currentMaxIndex} carrying {currentMax} cal.");
