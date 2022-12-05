@@ -2,6 +2,7 @@
 {
     public interface IDay
     {
+        void Initialise();
         void SolvePartOne();
         void SolvePartTwo();
     }
