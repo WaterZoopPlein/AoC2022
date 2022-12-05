@@ -5,13 +5,24 @@ namespace AoC2022Day
 {
     public class Day02 : IDay
     {
-        private static readonly List<string> InputList =
-    ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day02.txt", "\n");
+        private static List<string> inputList;
 
+        private bool isInitialised;
+
+        public void Initialise()
+        {
+            inputList =
+                ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day02.txt", "\n");
+            isInitialised = true;
+        }
 
         public void SolvePartOne()
         {
-            List<RpsRound> convertedInputList = InputList.ConvertAll(x => new RpsRound(x));
+            if (!isInitialised)
+            {
+                throw new Exception("Obj not initialised");
+            }
+            List<RpsRound> convertedInputList = inputList.ConvertAll(x => new RpsRound(x));
             var totalScore = 0;
             for (int i = 0; i < convertedInputList.Count; i++)
             {
@@ -22,7 +33,11 @@ namespace AoC2022Day
 
         public void SolvePartTwo()
         {
-            List<RpsRound> convertedInputList = InputList.ConvertAll(x => new RpsRound(x, mode: 2));
+            if (!isInitialised)
+            {
+                throw new Exception("Obj not initialised");
+            }
+            List<RpsRound> convertedInputList = inputList.ConvertAll(x => new RpsRound(x, mode: 2));
             var totalScore = 0;
             for (int i = 0; i < convertedInputList.Count; i++)
             {

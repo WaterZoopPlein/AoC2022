@@ -5,19 +5,32 @@ namespace AoC2022Day
 {
     public class Day04 : IDay
     {
-        private static readonly List<string> InputList =
-            ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day04.txt", "\n");
+        private static List<string> inputList;
 
-        private static readonly List<AssignmentPair> ConvertedInputList = 
-            InputList.ConvertAll(x => new AssignmentPair(x));
+        private static List<AssignmentPair> convertedInputList;
 
+        private bool isInitialised;
+
+        public void Initialise()
+        {
+            inputList =
+                ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day04.txt", "\n");
+            convertedInputList =
+                inputList.ConvertAll(x => new AssignmentPair(x));
+            isInitialised = true;
+        }
 
         public void SolvePartOne()
         {
-            int fullyOverlapCount = 0;
-            for (int i = 0; i < ConvertedInputList.Count; i++)
+            if (!isInitialised)
             {
-                if (ConvertedInputList[i].IsFullyOverlap())
+                throw new Exception("Obj not initialised");
+            }
+
+            int fullyOverlapCount = 0;
+            for (int i = 0; i < convertedInputList.Count; i++)
+            {
+                if (convertedInputList[i].IsFullyOverlap())
                 {
                     fullyOverlapCount++;
                 }
@@ -27,10 +40,15 @@ namespace AoC2022Day
 
         public void SolvePartTwo()
         {
-            int overlapCount = 0;
-            for (int i = 0; i < ConvertedInputList.Count; i++)
+            if (!isInitialised)
             {
-                if (ConvertedInputList[i].IsOverlap())
+                throw new Exception("Obj not initialised");
+            }
+
+            int overlapCount = 0;
+            for (int i = 0; i < convertedInputList.Count; i++)
+            {
+                if (convertedInputList[i].IsOverlap())
                 {
                     overlapCount++;
                 }

@@ -4,15 +4,28 @@ namespace AoC2022Day
 {
     public class Day03 : IDay
     {
-        private static readonly List<string> RucksacksList =
-            ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day03.txt", "\n");
+        private static List<string> rucksacksList;
+
+        private bool isInitialised;
+
+        public void Initialise()
+        {
+            rucksacksList =
+                ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day03.txt", "\n");
+            isInitialised = true;
+        }
 
         public void SolvePartOne()
         {
-            int matchItemSum = 0;
-            for (int i = 0; i < RucksacksList.Count; i++)
+            if (!isInitialised)
             {
-                string currentRucksack = RucksacksList[i];
+                throw new Exception("Obj not initialised");
+            }
+
+            int matchItemSum = 0;
+            for (int i = 0; i < rucksacksList.Count; i++)
+            {
+                string currentRucksack = rucksacksList[i];
                 int compartmentDivide = currentRucksack.Length / 2;
 
                 var firstCompartment = currentRucksack.Substring(0, compartmentDivide);
@@ -34,11 +47,16 @@ namespace AoC2022Day
 
         public void SolvePartTwo()
         {
+            if (!isInitialised)
+            {
+                throw new Exception("Obj not initialised");
+            }
+
             int matchItemSum = 0;
-            for (int i = 0; i < RucksacksList.Count - 2; i+=3)
+            for (int i = 0; i < rucksacksList.Count - 2; i+=3)
             {
                 char matchItem = findFirstMatchingItem(
-                    RucksacksList[i], RucksacksList[i+1], RucksacksList[i+2]);
+                    rucksacksList[i], rucksacksList[i+1], rucksacksList[i+2]);
 
                 int matchItemNumber = getItemNumber(matchItem);
 

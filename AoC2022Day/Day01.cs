@@ -4,19 +4,33 @@ namespace AoC2022Day
 {
     public class Day01 : IDay
     {
-        private static readonly List<string> InputList =
-            ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day01.txt", "\n\n");
+        private List<string> inputList;
 
-        private static readonly List<List<int>> ConvertedInputList
-            = InputList.ConvertAll(x => x.Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList());
+        private List<List<int>> convertedInputList;
+
+        private bool isInitialised;
+
+        public void Initialise()
+        {
+            inputList = 
+                ReadInput.ConvertInputTextToStringList(@"..\..\..\..\Inputs\Day01.txt", "\n\n");
+            convertedInputList = 
+                inputList.ConvertAll(x => x.Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList());
+            isInitialised = true;
+        }
 
         public void SolvePartOne()
         {
+            if (!isInitialised)
+            {
+                throw new Exception("Obj not initialised");
+            }
+
             int currentMaxIndex = 0;
             int currentMax = 0;
-            for (int currentElfIndex = 0; currentElfIndex < ConvertedInputList.Count; currentElfIndex++)
+            for (int currentElfIndex = 0; currentElfIndex < convertedInputList.Count; currentElfIndex++)
             {
-                var currentElfTotal = ConvertedInputList[currentElfIndex].Sum();
+                var currentElfTotal = convertedInputList[currentElfIndex].Sum();
                 if (currentElfTotal > currentMax)
                 {
                     currentMax = currentElfTotal;
@@ -28,13 +42,18 @@ namespace AoC2022Day
 
         public void SolvePartTwo()
         {
+            if (!isInitialised)
+            {
+                throw new Exception("Obj not initialised");
+            }
+
             const int TOP = 3;
             var currentMaxIndex = new int[TOP];
             var currentMax = new int[TOP];
 
-            for (int currentElfIndex = 0; currentElfIndex < ConvertedInputList.Count; currentElfIndex++)
+            for (int currentElfIndex = 0; currentElfIndex < convertedInputList.Count; currentElfIndex++)
             {
-                var currentElfTotal = ConvertedInputList[currentElfIndex].Sum();
+                var currentElfTotal = convertedInputList[currentElfIndex].Sum();
 
                 var maxInsertionIndex = 0;
                 while (maxInsertionIndex < TOP && currentElfTotal < currentMax[maxInsertionIndex])
