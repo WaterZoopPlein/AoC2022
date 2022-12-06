@@ -22,11 +22,53 @@ namespace AoC2022Day
             isInitialised = true;
         }
 
+        public void SolvePartOne()
+        {
+            if (!isInitialised)
+            {
+                throw new Exception("Obj not initialised");
+            }
+
+            InitialiseCargoStacks();
+
+            for (int i = 0; i < movesArr.Length; i++)
+            {
+                ExecuteMovePartOne(movesArr[i]);
+            }
+
+            foreach (var stack in cargoStacks)
+            {
+                Console.Write(stack.Peek());
+            }
+            Console.WriteLine();
+        }
+
+        public void SolvePartTwo()
+        {
+            if (!isInitialised)
+            {
+                throw new Exception("Obj not initialised");
+            }
+
+            InitialiseCargoStacks();
+
+            for (int i = 0; i < movesArr.Length; i++)
+            {
+                ExecuteMovePartTwo(movesArr[i]);
+            }
+
+            foreach (var stack in cargoStacks)
+            {
+                Console.Write(stack.Peek());
+            }
+            Console.WriteLine();
+        }
+
         private void InitialiseCargoStacks()
         {
             var containerString = inputList[0].Split('\n');
             int numberOfStacks = (containerString[containerString.Length - 1].Length + 1) / 4;
-            
+
             cargoStacks = new Stack<char>[numberOfStacks];
             for (int i = 0; i < numberOfStacks; i++)
             {
@@ -84,37 +126,5 @@ namespace AoC2022Day
             }
         }
 
-
-        public void SolvePartOne()
-        {
-            InitialiseCargoStacks();
-
-            for (int i = 0; i < movesArr.Length; i++)
-            {
-                ExecuteMovePartOne(movesArr[i]);
-            }
-
-            foreach (var stack in cargoStacks)
-            {
-                Console.Write(stack.Peek());
-            }
-            Console.WriteLine();
-        }
-
-        public void SolvePartTwo()
-        {
-            InitialiseCargoStacks();
-
-            for (int i = 0; i < movesArr.Length; i++)
-            {
-                ExecuteMovePartTwo(movesArr[i]);
-            }
-
-            foreach (var stack in cargoStacks)
-            {
-                Console.Write(stack.Peek());
-            }
-            Console.WriteLine();
-        }
     }
 }
