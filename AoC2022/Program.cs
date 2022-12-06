@@ -7,25 +7,25 @@ namespace AoC2022
     {
         public static void Main()
         {
-            var day = new Day05(); // Replace date number here
+            var day = new Day06(); // Replace date number here
 
             Solve(day);
         }
 
         private static void Solve(IDay day)
         {
-            var watchInnit = Stopwatch.StartNew();
             Console.WriteLine("Initialise");
+            var watchInnit = Stopwatch.StartNew();
             day.Initialise();
             watchInnit.Stop();
 
-            var watch1 = Stopwatch.StartNew();
             Console.WriteLine("Part 1");
+            var watch1 = Stopwatch.StartNew();
             day.SolvePartOne();
             watch1.Stop();
 
-            var watch2 = Stopwatch.StartNew();
             Console.WriteLine("Part 2");
+            var watch2 = Stopwatch.StartNew();
             day.SolvePartTwo();
             watch2.Stop();
 
